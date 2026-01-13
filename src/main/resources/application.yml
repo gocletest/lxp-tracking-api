@@ -1,9 +1,16 @@
 spring:
   datasource:
-    driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://61.14.208.8:3307/lxp_tracking
-    username: lxp
-    password: gocle123!@#
+    tracking:
+      driver-class-name: org.mariadb.jdbc.Driver
+      url: jdbc:mariadb://61.14.208.8:3307/lxp_tracking
+      username: lxp_tracking
+      password: gocle123!@#
+
+    backend:
+      driver-class-name: org.mariadb.jdbc.Driver
+      url: jdbc:mariadb://61.14.208.8:3307/lxp
+      username: lxp
+      password: gocle123!@#
 
   devtools:
     restart:
@@ -15,7 +22,7 @@ server:
   port: 8081
 
 mybatis:
-  mapper-locations: classpath:/mapper/*.xml
+  # ❗ 중요: mapper-locations 제거 or datasource별 SqlSessionFactory에서 설정
   type-aliases-package: com.gocle.lxp.tracking.domain
 
 elasticsearch:
@@ -23,4 +30,18 @@ elasticsearch:
   port: 9200
   scheme: http
   index:
-    learning-log: learning_log	
+    learning-log: learning_log
+
+# ===============================
+# LXP Tracking API 설정
+# ===============================
+lxp:
+  tracking:
+    api:
+      base-url: http://localhost:8081
+      endpoint: /api/lxp/events
+      version: v1
+    security:
+      api-key-enabled: true        # ✅ 이제 true 가능
+      rate-limit:
+        enabled: true              # 추후 Redis 붙이면 true

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gocle.lxp.tracking.mapper.ApiKeyUsageMapper">
+
+    <!-- 최근 1분간 API Key 사용 횟수 -->
+    <select id="countUsageLastMinute" resultType="int">
+        <![CDATA[
+        SELECT COUNT(*)
+        FROM lxp_api_key_usage
+        WHERE api_key_id = #{apiKeyId}
+          AND used_at >= DATE_SUB(NOW(), INTERVAL 1 MINUTE)
+        ]]>
+    </select>
+
+    <!-- API Key 사용 로그 저장 -->
+    <insert id="insertUsage">
+        INSERT INTO lxp_api_key_usage (
+            api_key_id,
+            api_key,
+            endpoint,
+            ip_address,
+            used_at
+        ) VALUES (
+            #{apiKeyId},
+            #{apiKey},
+            #{endpoint},
+            #{ipAddress},
+            NOW()
+        )
+    </insert>
+
+</mapper>

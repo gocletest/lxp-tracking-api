@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gocle.lxp.tracking.mapper.LxpApiKeyMapper">
+
+    <!--
+        API Key 조회 (lxp_api_key + lxp_api_client JOIN)
+    -->
+    <select id="findByApiKey" parameterType="string" resultType="com.gocle.lxp.tracking.domain.LxpApiKey">
+        SELECT
+	        k.api_key_id         AS apiKeyId,
+	        k.api_key            AS apiKey,
+	        k.allowed_domains    AS allowedDomains,
+	        k.enabled            AS enabled,
+	        k.rate_limit_per_min AS rateLimitPerMin,
+	        k.expires_at         AS expiresAt,
+	        k.created_at         AS createdAt,
+	        k.client_id          AS clientId,
+	
+	        c.status             AS clientStatus,
+	        c.client_code        AS clientCode,
+	        c.client_name        AS clientName
+	    FROM lxp_api_key k
+	    JOIN lxp_api_client c
+	      ON k.client_id = c.client_id
+	    WHERE k.api_key = #{apiKey}
+    </select>
+
+</mapper>
