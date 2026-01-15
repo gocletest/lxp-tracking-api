@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.gocle.lxp.tracking.mapper.ApiKeyUsageMapper">
+<mapper namespace="com.gocle.lxp.tracking.mapper.backend.ApiKeyUsageMapper">
 
     <!-- 최근 1분간 API Key 사용 횟수 -->
     <select id="countUsageLastMinute" resultType="int">

@@ -1,4 +1,4 @@
-package com.gocle.lxp.tracking.mapper;
+package com.gocle.lxp.tracking.mapper.backend;
 
 import com.gocle.lxp.tracking.domain.LxpApiKey;
 import org.apache.ibatis.annotations.Mapper;

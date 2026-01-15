@@ -18,7 +18,7 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
     basePackages = "com.gocle.lxp.tracking.mapper.tracking",
     sqlSessionFactoryRef = "trackingSqlSessionFactory",
 	basePackageClasses = {
-			com.gocle.lxp.tracking.mapper.LearningLogMapper.class
+			com.gocle.lxp.tracking.mapper.tracking.LearningLogMapper.class
     }
 )
 public class TrackingDataSourceConfig {

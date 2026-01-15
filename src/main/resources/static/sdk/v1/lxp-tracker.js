@@ -1,7 +1,6 @@
 (function (window, document) {
 
   const SCRIPT = document.currentScript;
-
   const API_KEY = SCRIPT?.getAttribute("data-lxp-key");
   const ENDPOINT = SCRIPT?.getAttribute("data-lxp-endpoint");
 
@@ -14,6 +13,10 @@
     version: "1.0.0",
 
     track(eventType, payload = {}) {
+      if (!API_KEY) {
+        console.warn("[LXP] API key missing");
+        return;
+      }
       const event = buildEvent(eventType, payload);
       send(event);
     }
@@ -21,9 +24,9 @@
 
   function buildEvent(eventType, payload) {
     return {
-      eventType,
-      timestamp: new Date().toISOString(),
       apiKey: API_KEY,
+      eventType: String(eventType).toUpperCase(),
+      timestamp: new Date().toISOString(),
       user: {
         id: payload.userId || getUserId()
       },
@@ -39,16 +42,21 @@
   }
 
   function send(event) {
+    const url = API_KEY
+      ? `${ENDPOINT}?apiKey=${encodeURIComponent(API_KEY)}`
+      : ENDPOINT;
+
     try {
-      navigator.sendBeacon(ENDPOINT, JSON.stringify(event));
+      navigator.sendBeacon(url, JSON.stringify(event));
     } catch (e) {
-      fetch(ENDPOINT, {
+      fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(event)
       }).catch(() => {});
     }
   }
+
 
   function getUserId() {
     return (

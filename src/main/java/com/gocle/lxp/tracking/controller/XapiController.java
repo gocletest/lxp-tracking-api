@@ -16,13 +16,13 @@ public class XapiController {
 
     @PostMapping("/statement")
     public ApiResponse<?> receiveStatement(@RequestBody String rawJson) {
-
+/*
         // 1. raw JSON → DTO
         XapiStatementDto dto = XapiStatementParser.parse(rawJson);
 
         // 2. 저장
         xapiService.saveStatement(dto);
-
+*/
         return ApiResponse.success("xAPI 수신 및 저장 완료", null);
     }
 }

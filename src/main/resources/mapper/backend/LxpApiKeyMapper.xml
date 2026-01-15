@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.gocle.lxp.tracking.mapper.LxpApiKeyMapper">
+<mapper namespace="com.gocle.lxp.tracking.mapper.backend.LxpApiKeyMapper">
 
     <!--
         API Key 조회 (lxp_api_key + lxp_api_client JOIN)

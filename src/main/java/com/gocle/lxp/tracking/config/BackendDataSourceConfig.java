@@ -12,12 +12,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
-import com.gocle.lxp.tracking.mapper.ApiKeyUsageMapper;
-import com.gocle.lxp.tracking.mapper.LxpApiKeyMapper;
+import com.gocle.lxp.tracking.mapper.backend.ApiKeyUsageMapper;
+import com.gocle.lxp.tracking.mapper.backend.LxpApiKeyMapper;
 
 @Configuration
 @MapperScan(
-    basePackages = "com.gocle.lxp.tracking.mapper",
+    basePackages = "com.gocle.lxp.tracking.mapper.backend",
     sqlSessionFactoryRef = "backendSqlSessionFactory",
     basePackageClasses = {
         ApiKeyUsageMapper.class,

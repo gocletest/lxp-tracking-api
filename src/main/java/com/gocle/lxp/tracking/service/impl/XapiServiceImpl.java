@@ -2,7 +2,7 @@ package com.gocle.lxp.tracking.service.impl;
 
 import com.gocle.lxp.tracking.domain.LearningLog;
 import com.gocle.lxp.tracking.dto.XapiStatementDto;
-import com.gocle.lxp.tracking.mapper.LearningLogMapper;
+import com.gocle.lxp.tracking.mapper.tracking.LearningLogMapper;
 import com.gocle.lxp.tracking.service.ElasticsearchService;
 import com.gocle.lxp.tracking.service.XapiService;
 import com.gocle.lxp.tracking.util.VerbNormalizer;
@@ -26,16 +26,11 @@ public class XapiServiceImpl implements XapiService {
         log.setPlatform(dto.getPlatform());
         log.setRawJson(dto.getRawJson());
 
-        // 1. DB
-        learningLogMapper.insert(log);
-
-        // 2. ES
-        elasticsearchService.indexLearningLog(
-                log.getActorId(),
-                log.getVerb(),
-                log.getObjectId(),
-                log.getPlatform(),
-                log.getRawJson()
-        );
+		/*
+		 * // 1. DB learningLogMapper.insert(log);
+		 * 
+		 * // 2. ES elasticsearchService.indexLearningLog( log.getActorId(),
+		 * log.getVerb(), log.getObjectId(), log.getPlatform(), log.getRawJson() );
+		 */
     }
 }

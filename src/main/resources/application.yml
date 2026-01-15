@@ -2,13 +2,13 @@ spring:
   datasource:
     tracking:
       driver-class-name: org.mariadb.jdbc.Driver
-      url: jdbc:mariadb://61.14.208.8:3307/lxp_tracking
-      username: lxp_tracking
+      jdbc-url: jdbc:mariadb://61.14.208.8:3307/lxp_tracking
+      username: lxp
       password: gocle123!@#
 
     backend:
       driver-class-name: org.mariadb.jdbc.Driver
-      url: jdbc:mariadb://61.14.208.8:3307/lxp
+      jdbc-url: jdbc:mariadb://61.14.208.8:3307/lxp
       username: lxp
       password: gocle123!@#
 

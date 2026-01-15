@@ -30,7 +30,9 @@ public class ElasticsearchService {
             String verb,
             String objectId,
             String platform,
-            String rawJson
+            String rawJson,
+            Long apiKeyId,
+            Long clientId
     ) {
     	
     	  // 이 로그가 찍히는지부터 확인
@@ -42,6 +44,10 @@ public class ElasticsearchService {
             doc.put("verb", verb);
             doc.put("object_id", objectId);
             doc.put("platform", platform);
+            
+            doc.put("api_key_id", apiKeyId);
+            doc.put("client_id", clientId);
+            
             doc.put("created_at", DateTimeFormatter.ISO_INSTANT.format(Instant.now()));
             doc.put("raw_json", rawJson);
 

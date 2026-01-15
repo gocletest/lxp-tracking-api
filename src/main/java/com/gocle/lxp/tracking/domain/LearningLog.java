@@ -18,6 +18,8 @@ public class LearningLog {
 
     /** 사용자 식별자 */
     private String actorId;
+    
+    private Long apiKeyId; 
 
     /** xAPI verb (started, completed, etc.) */
     private String verb;
